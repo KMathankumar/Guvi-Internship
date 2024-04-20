@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Profile</h2>
+        <div id="profileDetails">
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const userId = localStorage.getItem('userId');
+
+            $.ajax({
+                url: `profile.php?userId=${userId}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#profileDetails').html(`
+                        <p>Age: ${data.age}</p>
+                        <p>DOB: ${data.dob}</p>
+                        <p>Contact: ${data.contact}</p>
+                    `);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
